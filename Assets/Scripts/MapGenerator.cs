@@ -6,6 +6,7 @@ public class MapGenerator : MonoBehaviour
 {
     public Vector2 size;
     public GameObject prefab;
+    public GameObject playerPrefab;
     public Transform parent;
 
     [HideInInspector]
@@ -13,7 +14,7 @@ public class MapGenerator : MonoBehaviour
 
     void Start()
     {
-        Generate();   
+        Generate();
     }
 
     void Generate()
