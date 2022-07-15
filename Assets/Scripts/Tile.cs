@@ -7,10 +7,9 @@ public class Tile : MonoBehaviour
     private void Start()
     {
         FindObjectOfType<TileManager>().AddTile(gameObject);
-        GameManager.instance.OnMove.AddListener(OnMoveDone);
     }
 
-    public void OnMoveDone()
+    public void OnMove()
     {
         GameManager.instance.EndMove();
     }
