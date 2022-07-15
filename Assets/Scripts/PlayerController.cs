@@ -30,14 +30,15 @@ public class PlayerController : MonoBehaviour
     public void MoveRight(InputAction.CallbackContext ctx)
     {
         if (ctx.phase != InputActionPhase.Performed) return;
-        StartCoroutine(MoveWithoutRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(0, 1)));
+        StartCoroutine(MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(0, 1)));
     }
 
     public IEnumerator MoveWithoutRoll(Vector2 newPos)
     {
         if (GameManager.instance.isInMove) yield break;
+        var tile = GameManager.instance.tileManager.GetTile(new Vector3(newPos.x, 0, newPos.y));
+        if (tile == null || !tile.canPlace()) yield break;
         var position = transform.position;
-
         float counter = 0;
         GameManager.instance.StartMove();
         while (counter < animTime)
@@ -47,21 +48,20 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
-        GameManager.instance.EndMove();
-
         transform.position = new Vector3(newPos.x, 1, newPos.y);
+        GameManager.instance.MovedTo(tile.gameObject);
     }
 
     public IEnumerator MoveWithRoll(Vector2 newPos)
     {
-        print("as");
         if (GameManager.instance.isInMove) yield break;
+        var tile = GameManager.instance.tileManager.GetTile(new Vector3(newPos.x, 0, newPos.y));
+        if (tile == null || !tile.canPlace()) yield break;
         var position = transform.position;
         var rotation = transform.rotation;
         var distance = newPos - Utils.Vec3ToVec2(position);
         Vector3 diffVec = new Vector3(0.5f * distance.x, -0.5f, 0.5f * distance.y);
         Vector3 rotationPoint = position + diffVec;
-        print(rotationPoint);
         Vector3 rotationAxis = Vector3.Cross(Vector3.up, diffVec);
         float counter = 0;
         GameManager.instance.StartMove();
@@ -77,10 +77,6 @@ public class PlayerController : MonoBehaviour
         transform.position = position;
         transform.rotation = rotation;
         transform.RotateAround(rotationPoint, rotationAxis, 90);
-        GameManager.instance.EndMove();
-    }
-
-    private void Update()
-    {
+        GameManager.instance.MovedTo(tile.gameObject);
     }
 }

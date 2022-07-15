@@ -7,9 +7,15 @@ public class TileManager : MonoBehaviour
     public List<GameObject> tiles = new List<GameObject>();
 
 
-    GameObject GetTile(Vector3 pos)
+    public Tile GetTile(Vector3 pos)
     {
-        return tiles.Find(x => x.transform.position == pos);
+        var tile = tiles.Find(x => x.transform.position == pos);
+        if (tile == null)
+        {
+            return null;
+        }
+
+        return tile.GetComponent<Tile>();
     }
 
     public void AddTile(GameObject tile)
