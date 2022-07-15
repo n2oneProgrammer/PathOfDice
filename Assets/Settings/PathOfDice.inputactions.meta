@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f1ea6eec5e2af4d479dd6f4fc86e2714
+guid: 2c1b31b054fd39c4b8d8259338d384dc
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -7,7 +7,7 @@ ScriptedImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-  script: {instanceID: 0}
+  script: {fileID: 11500000, guid: 8404be70184654265930450def6a9037, type: 3}
   generateWrapperCode: 0
   wrapperCodePath: 
   wrapperClassName: 
