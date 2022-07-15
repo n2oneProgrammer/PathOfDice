@@ -6,8 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [Range(0f, 2f)]
-    public float animTime = 1;
+    [Range(0f, 2f)] public float animTime = 1;
 
     public void MoveDown(InputAction.CallbackContext ctx)
     {
@@ -62,6 +61,7 @@ public class PlayerController : MonoBehaviour
         var distance = newPos - Utils.Vec3ToVec2(position);
         Vector3 diffVec = new Vector3(0.5f * distance.x, -0.5f, 0.5f * distance.y);
         Vector3 rotationPoint = position + diffVec;
+        print(rotationPoint);
         Vector3 rotationAxis = Vector3.Cross(Vector3.up, diffVec);
         float counter = 0;
         GameManager.instance.StartMove();
@@ -77,6 +77,28 @@ public class PlayerController : MonoBehaviour
         transform.position = position;
         transform.rotation = rotation;
         transform.RotateAround(rotationPoint, rotationAxis, 90);
+        GameManager.instance.MovedTo(tile.gameObject);
+    }
+
+    public IEnumerator Rotate(Vector3 angles)
+    {
+        if (GameManager.instance.isInMove) yield break;
+        var tile = GameManager.instance.tileManager.GetTile(new Vector3((float)Math.Round(transform.position.x), 0,
+            (float)Math.Round(transform.position.z)));
+        if (tile == null || !tile.canPlace()) yield break;
+        var rotation = transform.rotation;
+        var targetRotation = Quaternion.Euler(transform.localEulerAngles + angles);
+
+        float counter = 0;
+        GameManager.instance.StartMove();
+        while (counter < animTime)
+        {
+            transform.rotation = Quaternion.Lerp(rotation, targetRotation, counter / animTime);
+            counter += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.rotation = targetRotation;
         GameManager.instance.MovedTo(tile.gameObject);
     }
 }
