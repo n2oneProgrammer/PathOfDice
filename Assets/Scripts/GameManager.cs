@@ -28,14 +28,4 @@ public class GameManager : MonoBehaviour
     {
         isInMove = false;
     }
-
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-        
-    }
 }

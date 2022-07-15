@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: f1ea6eec5e2af4d479dd6f4fc86e2714,
+  m_Actions: {fileID: -944628639613478452, guid: 2c1b31b054fd39c4b8d8259338d384dc,
     type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
@@ -127,92 +127,44 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 920d0d8a-caa5-4e66-98d1-de1922f7fba3
+    m_ActionId: b07427c1-ac60-4682-85f0-37d956d39211
     m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 1aff24a1-08d4-4315-8abc-697220d08f78
+    m_ActionId: 2b2ed9de-9bd6-42ad-ad75-f447f77f10d0
     m_ActionName: UI/Submit[/Keyboard/enter]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 46bfdc6a-6262-4954-be5a-f2ffd4743bcf
+    m_ActionId: eb7fe372-8b86-4700-bb43-caf50d794e2b
     m_ActionName: UI/Cancel[/Keyboard/escape]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 5dcc127b-1b8e-4228-905a-b675e1830ba6
+    m_ActionId: aeae72a1-37a6-42cd-9b0f-c9668f0ab74b
     m_ActionName: UI/Point[/Mouse/position]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: e84c0e20-126f-4a62-b651-f1cd81730728
+    m_ActionId: 389991cc-ad01-4f54-8f74-100ef5cfb001
     m_ActionName: UI/Click[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: cad0aa7a-abab-4dfa-8ba8-ebe890de69c6
+    m_ActionId: 583adf66-4019-44d8-b87a-538ee8bf4564
     m_ActionName: UI/ScrollWheel[/Mouse/scroll]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 2863a16c-6f82-4804-9d12-7b2b5bea53bf
+    m_ActionId: 25e168ca-cae6-4dea-91a9-802aa22a2bf5
     m_ActionName: UI/MiddleClick[/Mouse/middleButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: cc359b67-285f-45ca-8461-a7fe5fd4cd6a
+    m_ActionId: cceb3429-7abf-43a1-b023-cb010d5c0045
     m_ActionName: UI/RightClick[/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 3a15435e-5c6f-4095-b060-f55d622180f6
+    m_ActionId: 5bfd01b8-7b5e-4eae-b480-ed40549df736
     m_ActionName: UI/TrackedDevicePosition
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 4b09d45f-dac0-4627-85cf-162158986379
+    m_ActionId: 3fee9d2f-62ab-4e3a-9d6c-009acb2bbad4
     m_ActionName: UI/TrackedDeviceOrientation
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4352184387277067946}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: MoveLeft
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: e1943e88-306d-48c1-b90a-a8cb0055eaea
-    m_ActionName: Player/MoveLeft[/Keyboard/a,/Keyboard/leftArrow]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4352184387277067946}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: MoveUp
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 325acd13-2c39-40fb-a53e-926fe53ff655
-    m_ActionName: Player/MoveUp[/Keyboard/w,/Keyboard/upArrow]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4352184387277067946}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: MoveRight
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 06e398e0-682c-4e56-a235-29be901d4174
-    m_ActionName: Player/MoveRight[/Keyboard/rightArrow,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4352184387277067946}
@@ -227,8 +179,56 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 2ed3d5d3-e2bf-49a8-9840-ac2a5d42c7d4
+    m_ActionId: fcdc6bb8-7843-44b0-8cee-2cbbd2bf7d0b
     m_ActionName: Player/MoveDown[/Keyboard/s,/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4352184387277067946}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: MoveUp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0aaf3161-c987-4352-80ec-3902215728d6
+    m_ActionName: Player/MoveUp[/Keyboard/w,/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4352184387277067946}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: MoveLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fb8a33df-b75a-4d1a-a713-4ed5d248bff5
+    m_ActionName: Player/MoveLeft[/Keyboard/leftArrow,/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4352184387277067946}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: MoveRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 784f8a86-ad1b-4a29-970c-85b351141468
+    m_ActionName: Player/MoveRight[/Keyboard/d,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
