@@ -13,4 +13,9 @@ public class Tile : MonoBehaviour
     {
         GameManager.instance.EndMove();
     }
+
+    public bool canPlace()
+    {
+        return true;
+    }
 }
