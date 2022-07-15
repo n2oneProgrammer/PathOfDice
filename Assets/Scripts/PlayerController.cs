@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [Range(0f, 2f)]
     public float animTime = 1;
 
     public void MoveDown(InputAction.CallbackContext ctx)
