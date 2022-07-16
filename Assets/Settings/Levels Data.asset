@@ -21,10 +21,10 @@ MonoBehaviour:
     sceneName: L2
   - name: Level 3
     image: {fileID: 0}
-    sceneName: L3
+    sceneName: L2.5
   - name: Level 4
     image: {fileID: 0}
-    sceneName: L4
+    sceneName: L3
   - name: Level 5
     image: {fileID: 0}
     sceneName: L7
