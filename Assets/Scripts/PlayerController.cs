@@ -17,7 +17,12 @@ public class PlayerController : MonoBehaviour
     };
 
     [Range(0f, 2f)] public float animTime = 1;
+    public ParticleSystem winParticle;
 
+    private void Start()
+    {
+        GameManager.instance.onWin.AddListener(OnWin);
+    }
 
     public void MoveDown(InputAction.CallbackContext ctx)
     {
@@ -152,5 +157,10 @@ public class PlayerController : MonoBehaviour
         }
 
         return -1;
+    }
+
+    public void OnWin()
+    {
+        winParticle.Play();
     }
 }
