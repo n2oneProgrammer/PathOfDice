@@ -84,6 +84,7 @@ MonoBehaviour:
   onWin:
     m_PersistentCalls:
       m_Calls: []
+  LevelsData: {fileID: 11400000, guid: fa417421fe7cfb84ca6d5f86c9dbfaa1, type: 2}
   endScreen: {fileID: 0}
   showWinPanelTime: 1
 --- !u!114 &3553517119231579949
@@ -98,12 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556d73b1da495b949ac46eba7fb2b9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  details:
-    rotationAngle: 60
-    distance: 10
-    height: 8
-    startCorner: {fileID: 1027731954898685908}
-    endCorner: {fileID: 1694477914269702005}
 --- !u!1 &7464298636809328403
 GameObject:
   m_ObjectHideFlags: 0
