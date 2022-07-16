@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     public bool isInMove;
     public TileManager tileManager;
+    public PlayerController player;
 
     private void Awake()
     {

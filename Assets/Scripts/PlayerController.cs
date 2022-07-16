@@ -10,31 +10,43 @@ public class PlayerController : MonoBehaviour
 
     public void MoveDown(InputAction.CallbackContext ctx)
     {
+
+        if (GameManager.instance.isInMove) return;
         if (ctx.phase != InputActionPhase.Performed) return;
-        StartCoroutine(MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(1, 0)));
+        MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(1, 0));
     }
 
     public void MoveUp(InputAction.CallbackContext ctx)
     {
+
+        if (GameManager.instance.isInMove) return;
         if (ctx.phase != InputActionPhase.Performed) return;
-        StartCoroutine(MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(-1, 0)));
+        MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(-1, 0));
     }
 
     public void MoveLeft(InputAction.CallbackContext ctx)
     {
+
+        if (GameManager.instance.isInMove) return;
         if (ctx.phase != InputActionPhase.Performed) return;
-        StartCoroutine(MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(0, -1)));
+        MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(0, -1));
     }
 
     public void MoveRight(InputAction.CallbackContext ctx)
     {
+
+        if (GameManager.instance.isInMove) return;
         if (ctx.phase != InputActionPhase.Performed) return;
-        StartCoroutine(MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(0, 1)));
+        MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(0, 1));
     }
 
-    public IEnumerator MoveWithoutRoll(Vector2 newPos)
+    public void MoveWithoutRoll(Vector2 newPos)
     {
-        if (GameManager.instance.isInMove) yield break;
+        StartCoroutine(MoveWithoutRollCoroutine(newPos));
+    }
+
+    public IEnumerator MoveWithoutRollCoroutine(Vector2 newPos)
+    {
         var tile = GameManager.instance.tileManager.GetTile(new Vector3(newPos.x, 0, newPos.y));
         if (tile == null || !tile.canPlace()) yield break;
         var position = transform.position;
@@ -51,17 +63,21 @@ public class PlayerController : MonoBehaviour
         GameManager.instance.MovedTo(tile.gameObject);
     }
 
-    public IEnumerator MoveWithRoll(Vector2 newPos)
+    public void MoveWithRoll(Vector2 newPos)
     {
-        if (GameManager.instance.isInMove) yield break;
+        StartCoroutine(MoveWithRollCoroutine(newPos));
+    }
+
+    public IEnumerator MoveWithRollCoroutine(Vector2 newPos)
+    {
         var tile = GameManager.instance.tileManager.GetTile(new Vector3(newPos.x, 0, newPos.y));
+        print(tile);
         if (tile == null || !tile.canPlace()) yield break;
         var position = transform.position;
         var rotation = transform.rotation;
         var distance = newPos - Utils.Vec3ToVec2(position);
         Vector3 diffVec = new Vector3(0.5f * distance.x, -0.5f, 0.5f * distance.y);
         Vector3 rotationPoint = position + diffVec;
-        print(rotationPoint);
         Vector3 rotationAxis = Vector3.Cross(Vector3.up, diffVec);
         float counter = 0;
         GameManager.instance.StartMove();
@@ -80,9 +96,13 @@ public class PlayerController : MonoBehaviour
         GameManager.instance.MovedTo(tile.gameObject);
     }
 
-    public IEnumerator Rotate(Vector3 angles)
+    public void Rotate(Vector3 angles)
     {
-        if (GameManager.instance.isInMove) yield break;
+        StartCoroutine(RotateCoroutine(angles));
+    }
+
+    public IEnumerator RotateCoroutine(Vector3 angles)
+    {
         var tile = GameManager.instance.tileManager.GetTile(new Vector3((float)Math.Round(transform.position.x), 0,
             (float)Math.Round(transform.position.z)));
         if (tile == null || !tile.canPlace()) yield break;
@@ -99,6 +119,6 @@ public class PlayerController : MonoBehaviour
         }
 
         transform.rotation = targetRotation;
-        GameManager.instance.MovedTo(tile.gameObject);
+        GameManager.instance.EndMove();
     }
 }
