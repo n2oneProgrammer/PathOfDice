@@ -20,8 +20,6 @@ public static class LevelSaver
             save.name = name;
             return save;
         }
-
-        Debug.Log(saveString);
         return JsonUtility.FromJson<LevelSave>(saveString);
     }
 
