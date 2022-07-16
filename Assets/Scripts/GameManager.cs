@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,14 +16,22 @@ public class GameManager : MonoBehaviour
     public bool isInMove;
     public TileManager tileManager;
     public PlayerController player;
+    public UnityEvent onWin;
+
+    [Header("UI")]
+    public GameObject endScreen;
+    public float showWinPanelTime;
 
     private void Awake()
     {
         _instance = this;
+        if(onWin == null) onWin = new UnityEvent();
+        onWin.AddListener(OnWin);
     }
 
     private void Start()
     {
+        endScreen.SetActive(false);
         tileManager = FindObjectOfType<TileManager>();
     }
 
@@ -41,8 +50,17 @@ public class GameManager : MonoBehaviour
         isInMove = false;
     }
 
-    public void Win()
+
+    void OnWin()
     {
-        print("Win");
+        int i = PlayerPrefs.GetInt("unlockLevels", 1);
+        PlayerPrefs.SetInt("unlockLevels", i + 1);
+        StartCoroutine(OnWinCorutine());
+    }
+
+    IEnumerator OnWinCorutine()
+    {
+        yield return new WaitForSecondsRealtime(showWinPanelTime);
+        endScreen.SetActive(true);
     }
 }

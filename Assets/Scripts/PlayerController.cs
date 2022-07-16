@@ -17,7 +17,12 @@ public class PlayerController : MonoBehaviour
     };
 
     [Range(0f, 2f)] public float animTime = 1;
+    public ParticleSystem winParticle;
 
+    private void Start()
+    {
+        GameManager.instance.onWin.AddListener(OnWin);
+    }
 
     public void MoveDown(InputAction.CallbackContext ctx)
     {
@@ -82,7 +87,6 @@ public class PlayerController : MonoBehaviour
     public IEnumerator MoveWithRollCoroutine(Vector2 newPos)
     {
         var tile = GameManager.instance.tileManager.GetTile(new Vector3(newPos.x, 0, newPos.y));
-        print(tile);
         if (tile == null || !tile.canPlace()) yield break;
         var position = transform.position;
         var rotation = transform.rotation;
@@ -105,7 +109,6 @@ public class PlayerController : MonoBehaviour
         transform.rotation = rotation;
         transform.RotateAround(rotationPoint, rotationAxis, 90);
         GameManager.instance.MovedTo(tile.gameObject);
-        print("NUMBER " + getTopNumber());
     }
 
     public void Rotate(Vector3 angles)
@@ -146,11 +149,15 @@ public class PlayerController : MonoBehaviour
         {
             if (transform.rotation * item.Key == Vector3.up)
             {
-                print(item.Value);
                 return item.Value;
             }
         }
 
         return -1;
+    }
+
+    public void OnWin()
+    {
+        winParticle.Play();
     }
 }
