@@ -68,6 +68,7 @@ public class Tile : MonoBehaviour
                     }
                     else
                     {
+                        GameManager.instance.Wrong();
                         GameManager.instance.EndMove();
                     }
 
