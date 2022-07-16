@@ -4860,7 +4860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7452fe14124171974d48db65c9bde2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animTime: 0.6
+  animTime: 0.3
   winParticle: {fileID: 1572743836}
 --- !u!114 &1307165186
 MonoBehaviour:
@@ -4992,6 +4992,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 784f8a86-ad1b-4a29-970c-85b351141468
     m_ActionName: Player/MoveRight[/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ac001ec8-c3bf-488f-8848-bcf1d37ff4bc
+    m_ActionName: Player/Restart[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

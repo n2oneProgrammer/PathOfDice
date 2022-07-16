@@ -23,7 +23,7 @@ public class LevelManagerUI : MonoBehaviour
         Button b = obj.GetComponent<Button>();
         b.onClick.AddListener(()=>LoadLevel(id));
 
-        if (PlayerPrefs.GetInt("unlockLevels", 1) <= id || PlayerPrefs.GetInt("unlockAll",0) == 1)
+        if (PlayerPrefs.GetInt("unlockLevels", 1) <= id && PlayerPrefs.GetInt("unlockAll",0) == 0)
         {
             obj.transform.Find("Panel").gameObject.SetActive(true);
             b.interactable = false;
