@@ -50,13 +50,22 @@ public class GameManager : MonoBehaviour
     public void StartMove()
     {
         isInMove = true;
+        moveCount++;
+        DisplayScore();
     }
 
     public void EndMove()
     {
+        StartCoroutine(LateEndMove());
+    }
+
+    IEnumerator LateEndMove()
+    {
+        yield return null;
+        yield return null;
+        yield return null;
         isInMove = false;
-        moveCount++;
-        DisplayScore();
+
     }
 
     void DisplayScore()

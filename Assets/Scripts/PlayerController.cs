@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -27,32 +26,29 @@ public class PlayerController : MonoBehaviour
         GameManager.instance.onWin.AddListener(OnWin);
     }
 
-    public void MoveDown(InputAction.CallbackContext ctx)
+    private void Update()
     {
-        if (GameManager.instance.isInMove) return;
-        if (ctx.phase != InputActionPhase.Performed) return;
-        MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(1, 0));
-    }
+        if (!GameManager.instance.isInMove)
+        {
+            Vector2 input = new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
 
-    public void MoveUp(InputAction.CallbackContext ctx)
-    {
-        if (GameManager.instance.isInMove) return;
-        if (ctx.phase != InputActionPhase.Performed) return;
-        MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(-1, 0));
-    }
-
-    public void MoveLeft(InputAction.CallbackContext ctx)
-    {
-        if (GameManager.instance.isInMove) return;
-        if (ctx.phase != InputActionPhase.Performed) return;
-        MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(0, -1));
-    }
-
-    public void MoveRight(InputAction.CallbackContext ctx)
-    {
-        if (GameManager.instance.isInMove) return;
-        if (ctx.phase != InputActionPhase.Performed) return;
-        MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(0, 1));
+            if (input.x > 0)
+            {
+                MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(-1, 0));
+            }
+            else if (input.x < 0)
+            {
+                MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(1, 0));
+            }
+            else if (input.y > 0)
+            {
+                MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(0, 1));
+            }
+            else if (input.y < 0)
+            {
+                MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(0, -1));
+            }
+        }
     }
 
     public void MoveWithoutRoll(Vector2 newPos)
@@ -146,11 +142,11 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(transform.position, vec, Color.red);
     }
 
-    public int getTopNumber()
+    public int getNumber()
     {
         foreach (var item in faces)
         {
-            if (transform.rotation * item.Key == Vector3.up)
+            if (transform.rotation * item.Key == Vector3.down)
             {
                 return item.Value;
             }
