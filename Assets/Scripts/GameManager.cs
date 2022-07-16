@@ -50,13 +50,22 @@ public class GameManager : MonoBehaviour
     public void StartMove()
     {
         isInMove = true;
+        moveCount++;
+        DisplayScore();
     }
 
     public void EndMove()
     {
+        StartCoroutine(LateEndMove());
+    }
+
+    IEnumerator LateEndMove()
+    {
+        yield return null;
+        yield return null;
+        yield return null;
         isInMove = false;
-        moveCount++;
-        DisplayScore();
+
     }
 
     void DisplayScore()
@@ -68,8 +77,6 @@ public class GameManager : MonoBehaviour
     {
         audioSource.clip = winAudioClip;
         audioSource.Play();
-        moveCount++;
-        DisplayScore();
         int i = Math.Max((PlayerPrefs.GetInt("currentLevel", 0) + 2), PlayerPrefs.GetInt("unlockLevels", 1));
         PlayerPrefs.SetInt("unlockLevels", i);
         StartCoroutine(OnWinCorutine());
