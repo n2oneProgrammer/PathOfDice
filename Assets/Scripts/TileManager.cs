@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class TileManager : MonoBehaviour
 {
-    public List<GameObject> tiles = new List<GameObject>();
+    List<Tile> tiles = new List<Tile>();
 
 
     public Tile GetTile(Vector3 pos)
     {
         var tile = tiles.Find(x => x.transform.position == pos);
+        print(tile);
         if (tile == null)
         {
             return null;
         }
-
-        return tile.GetComponent<Tile>();
+        return tile;
     }
 
-    public void AddTile(GameObject tile)
+    public void AddTile(Tile tile)
     {
         tiles.Add(tile);
     }
