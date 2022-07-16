@@ -441,7 +441,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -509,8 +509,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 998043990}
-  m_LocalRotation: {x: 0.3176683, y: -0.6217744, z: 0.30496597, w: 0.64767224}
-  m_LocalPosition: {x: 4.4044657, y: 4.3181753, z: 0.4814527}
+  m_LocalRotation: {x: 0.20810673, y: -0.78910506, z: 0.42173353, w: 0.39515275}
+  m_LocalPosition: {x: 3.9008012, y: 5.8506804, z: 2.5509896}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
