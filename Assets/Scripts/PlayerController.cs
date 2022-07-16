@@ -6,7 +6,18 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public Dictionary<Vector3, int> faces = new Dictionary<Vector3, int>()
+    {
+        { Vector3.down, 6 },
+        { Vector3.up, 1 },
+        { Vector3.back, 5 },
+        { Vector3.forward, 2 },
+        { Vector3.left, 3 },
+        { Vector3.right, 4 }
+    };
+
     [Range(0f, 2f)] public float animTime = 1;
+
 
     public void MoveDown(InputAction.CallbackContext ctx)
     {
@@ -61,7 +72,6 @@ public class PlayerController : MonoBehaviour
         var distance = newPos - Utils.Vec3ToVec2(position);
         Vector3 diffVec = new Vector3(0.5f * distance.x, -0.5f, 0.5f * distance.y);
         Vector3 rotationPoint = position + diffVec;
-        print(rotationPoint);
         Vector3 rotationAxis = Vector3.Cross(Vector3.up, diffVec);
         float counter = 0;
         GameManager.instance.StartMove();
@@ -78,6 +88,7 @@ public class PlayerController : MonoBehaviour
         transform.rotation = rotation;
         transform.RotateAround(rotationPoint, rotationAxis, 90);
         GameManager.instance.MovedTo(tile.gameObject);
+        print("NUMBER " + getTopNumber());
     }
 
     public IEnumerator Rotate(Vector3 angles)
@@ -100,5 +111,25 @@ public class PlayerController : MonoBehaviour
 
         transform.rotation = targetRotation;
         GameManager.instance.MovedTo(tile.gameObject);
+    }
+
+    private void OnDrawGizmos()
+    {
+        var vec = transform.rotation * Vector3.up;
+        Debug.DrawRay(transform.position, vec, Color.red);
+    }
+
+    public int getTopNumber()
+    {
+        foreach (var item in faces)
+        {
+            if (transform.rotation * item.Key == Vector3.up)
+            {
+                print(item.Value);
+                return item.Value;
+            }
+        }
+
+        return -1;
     }
 }
