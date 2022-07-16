@@ -8,33 +8,33 @@ public class SceneLoader : MonoBehaviour
     public GameObject LoadingScreen;
     public string gameScene;
     public string startScene;
+    public string menuBackgroundScene;
 
     public LevelsData data;
 
-    public void LoadScene(string name)
+    public void LoadScene(string name, bool withBackground = false)
     {
         if (name == null || name == "") return;
         LoadingScreen.SetActive(true);
-        StartCoroutine(_LoadScene(name));
+
+        StartCoroutine(_LoadScene(name, withBackground));
     }
 
     public void LoadLevel(int id)
     {
         string name = data.GetLevelSceneName(id);
         if (name == null || name == "") return;
-        PlayerPrefs.SetInt("currentLevel",id);
+        PlayerPrefs.SetInt("currentLevel", id);
         LoadingScreen.SetActive(true);
         StartCoroutine(_LoadLevel(name));
-
     }
 
     IEnumerator _LoadLevel(string name)
     {
-
         AsyncOperation gameLoading = SceneManager.LoadSceneAsync(gameScene, LoadSceneMode.Single);
         AsyncOperation levelLoading = SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
 
-        while(!gameLoading.isDone || !levelLoading.isDone)
+        while (!gameLoading.isDone || !levelLoading.isDone)
         {
             yield return null;
         }
@@ -42,10 +42,13 @@ public class SceneLoader : MonoBehaviour
         EndLoading();
     }
 
-    IEnumerator _LoadScene(string name)
+    IEnumerator _LoadScene(string name, bool withBackground = false)
     {
         AsyncOperation loading = SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
-        while (!loading.isDone)
+        AsyncOperation background = null;
+        if (withBackground)
+            background = SceneManager.LoadSceneAsync(menuBackgroundScene, LoadSceneMode.Additive);
+        while (!loading.isDone || (withBackground && !background.isDone))
         {
             yield return null;
         }
@@ -61,7 +64,6 @@ public class SceneLoader : MonoBehaviour
 
     void Start()
     {
-        LoadScene(startScene);
+        LoadScene(startScene, true);
     }
-
 }

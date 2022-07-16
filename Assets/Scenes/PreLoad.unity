@@ -749,6 +749,7 @@ MonoBehaviour:
   LoadingScreen: {fileID: 843410618}
   gameScene: Game
   startScene: Menu
+  menuBackgroundScene: MenuBackground
   data: {fileID: 11400000, guid: fa417421fe7cfb84ca6d5f86c9dbfaa1, type: 2}
 --- !u!4 &1941922574
 Transform:
