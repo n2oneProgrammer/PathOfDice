@@ -31,7 +31,9 @@ public class LevelManagerUI : MonoBehaviour
 
         obj.GetComponentInChildren<TextMeshProUGUI>().text = data.levels[id].name;
         obj.GetComponentsInChildren<Image>()[1].sprite = data.levels[id].image;
-        
+        var save = LevelSaver.getSave(data.levels[id].name);
+        obj.transform.Find("Best").gameObject.GetComponent<TextMeshProUGUI>().text = "" + (save.highScore == System.Int32.MaxValue ? "-" : save.highScore);
+
     }
 
     void LoadLevel(int id)

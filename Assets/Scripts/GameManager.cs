@@ -17,8 +17,10 @@ public class GameManager : MonoBehaviour
     public LevelsData LevelsData;
     [Header("UI")] public GameObject endScreen;
     public float showWinPanelTime;
+    public TMPro.TextMeshProUGUI scoreText;
 
     private int moveCount = 0;
+    int lastScore = 0;
 
     private void Awake()
     {
@@ -32,10 +34,9 @@ public class GameManager : MonoBehaviour
         endScreen.SetActive(false);
         tileManager = FindObjectOfType<TileManager>();
         string levelName = LevelsData.GetLevelSceneName(PlayerPrefs.GetInt("currentLevel", 0));
-        var save = LevelSaver.getSave(levelName);
-        print(save.name);
-        print(save.highScore);
+        lastScore = LevelSaver.getSave(levelName).highScore;
         moveCount = 0;
+        DisplayScore();
     }
 
     public void MovedTo(GameObject tile)
@@ -52,8 +53,13 @@ public class GameManager : MonoBehaviour
     {
         isInMove = false;
         moveCount++;
+        DisplayScore();
     }
 
+    void DisplayScore()
+    {
+        scoreText.text = moveCount + "/" + (lastScore == Int32.MaxValue ? "-" : lastScore);
+    }
 
     void OnWin()
     {
@@ -62,8 +68,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine(OnWinCorutine());
         string levelName = LevelsData.GetLevelSceneName(PlayerPrefs.GetInt("currentLevel", 0));
         var save = LevelSaver.getSave(levelName);
-        save.highScore = moveCount;
-        LevelSaver.pushSave(save);
+        if (save.highScore > moveCount)
+        {
+            save.highScore = moveCount;
+            LevelSaver.pushSave(save);
+        }
     }
 
     IEnumerator OnWinCorutine()
