@@ -19,7 +19,7 @@ public class LevelsData: ScriptableObject
     public string GetLevelSceneName(int levelId)
     {
         if (levels.Length <= levelId) return null;
-        //if (PlayerPrefs.GetInt("unlockLevels", 1) <= levelId) return null; // THE CHEAT TODO: remove this
+        if (PlayerPrefs.GetInt("unlockLevels", 1) <= levelId && PlayerPrefs.GetInt("unlockAll", 0) == 0) return null;
         return levels[levelId].sceneName;
     }
 }
