@@ -33,6 +33,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/L10.unity
     guid: 8fb2d2cd354449349ab3255f3ba23a4d
   - enabled: 1
+    path: Assets/Scenes/Levels/L20.unity
+    guid: 808c185a2eec2c74a8281a725341149d
+  - enabled: 1
+    path: Assets/Scenes/Levels/L21.unity
+    guid: d600d6229e3ebf849bf14396c9f4fc96
+  - enabled: 1
+    path: Assets/Scenes/Levels/L22.unity
+    guid: 5a084a198f6e39e4e8601fe5b633c5ec
+  - enabled: 1
     path: Assets/Scenes/Levels/Test Chambers/T2.unity
     guid: aa5517b2d1b7efa4cbc001a929d03a59
   - enabled: 1

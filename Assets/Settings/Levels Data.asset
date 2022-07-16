@@ -43,3 +43,12 @@ MonoBehaviour:
   - name: T2
     image: {fileID: 0}
     sceneName: T2
+  - name: L20
+    image: {fileID: 0}
+    sceneName: L20
+  - name: L21
+    image: {fileID: 0}
+    sceneName: L21
+  - name: L22
+    image: {fileID: 0}
+    sceneName: L22
