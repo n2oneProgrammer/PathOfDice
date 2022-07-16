@@ -146,11 +146,11 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(transform.position, vec, Color.red);
     }
 
-    public int getTopNumber()
+    public int getNumber()
     {
         foreach (var item in faces)
         {
-            if (transform.rotation * item.Key == Vector3.up)
+            if (transform.rotation * item.Key == Vector3.down)
             {
                 return item.Value;
             }

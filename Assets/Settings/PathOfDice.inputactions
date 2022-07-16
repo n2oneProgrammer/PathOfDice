@@ -43,21 +43,21 @@
                 },
                 {
                     "name": "Restart",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "ac001ec8-c3bf-488f-8848-bcf1d37ff4bc",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Dpad",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Pause",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "80891192-5180-440a-a919-5fe78b7c9d59",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Dpad",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [

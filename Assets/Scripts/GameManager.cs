@@ -68,6 +68,8 @@ public class GameManager : MonoBehaviour
     {
         audioSource.clip = winAudioClip;
         audioSource.Play();
+        moveCount++;
+        DisplayScore();
         int i = Math.Max((PlayerPrefs.GetInt("currentLevel", 0) + 2), PlayerPrefs.GetInt("unlockLevels", 1));
         PlayerPrefs.SetInt("unlockLevels", i);
         StartCoroutine(OnWinCorutine());
