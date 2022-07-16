@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class SceneLoadUI : MonoBehaviour
 {
-    
     SceneLoader loader;
+    LevelManager levelManager;
+
     void Start()
     {
         loader = FindObjectOfType<SceneLoader>();
+        levelManager = FindObjectOfType<LevelManager>();
     }
 
     public void LoadScene(string name)
@@ -16,9 +18,10 @@ public class SceneLoadUI : MonoBehaviour
         loader.LoadScene(name);
     }
 
-    public void LoadLevel(string name)
+    public void LoadLevel(int levelId = 0)
     {
-        loader.LoadLevel(name);
+        var scene = levelManager.GetLevelSceneName(levelId);
+        if (scene == null) return;
+        loader.LoadLevel(scene);
     }
-
 }
