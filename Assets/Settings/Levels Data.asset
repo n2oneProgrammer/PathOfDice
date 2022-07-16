@@ -13,42 +13,60 @@ MonoBehaviour:
   m_Name: Levels Data
   m_EditorClassIdentifier: 
   levels:
-  - name: Level1
-    image: {fileID: 21300000, guid: 29cda8f96ff378044b766b466bb95a5b, type: 3}
+  - name: Level 1
+    image: {fileID: 0}
     sceneName: L1
-  - name: Level2
-    image: {fileID: 21300000, guid: 5281dcf8c8f685d4990e1436473550a3, type: 3}
+  - name: Level 2
+    image: {fileID: 0}
     sceneName: L2
-  - name: Level3
+  - name: Level 3
     image: {fileID: 0}
     sceneName: L3
-  - name: Level4
+  - name: Level 4
     image: {fileID: 0}
     sceneName: L4
-  - name: 7
+  - name: Level 5
     image: {fileID: 0}
     sceneName: L7
-  - name: 8
+  - name: Level 6
     image: {fileID: 0}
     sceneName: L8
-  - name: 9
+  - name: Level 7
     image: {fileID: 0}
     sceneName: L9
-  - name: 10
+  - name: Level 8
     image: {fileID: 0}
     sceneName: L10
-  - name: T1
+  - name: Level 9
+    image: {fileID: 0}
+    sceneName: L20
+  - name: Level 10
+    image: {fileID: 0}
+    sceneName: L21
+  - name: Level 11
+    image: {fileID: 0}
+    sceneName: L22
+  - name: Level 12
+    image: {fileID: 0}
+    sceneName: L30
+  - name: Level 13
     image: {fileID: 0}
     sceneName: T1
-  - name: T2
-    image: {fileID: 0}
-    sceneName: T2
-  - name: T3
+  - name: Level 14
     image: {fileID: 0}
     sceneName: T3
-  - name: T4
+  - name: Level 15
+    image: {fileID: 0}
+    sceneName: L31
+  - name: Level 16
+    image: {fileID: 0}
+    sceneName: T2
+  - name: Level 17
+    image: {fileID: 0}
+    sceneName: L32
+  - name: Level 18
     image: {fileID: 0}
     sceneName: T4
-  - name: T5
+  - name: Level 19
     image: {fileID: 0}
     sceneName: T5
