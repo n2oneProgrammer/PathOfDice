@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     public PlayerController player;
     public UnityEvent onWin;
     public LevelsData LevelsData;
+
+    public AudioSource audioSource;
+    public AudioClip winAudioClip;
     [Header("UI")] public GameObject endScreen;
     public float showWinPanelTime;
     public TMPro.TextMeshProUGUI scoreText;
@@ -63,6 +66,8 @@ public class GameManager : MonoBehaviour
 
     void OnWin()
     {
+        audioSource.clip = winAudioClip;
+        audioSource.Play();
         int i = Math.Max((PlayerPrefs.GetInt("currentLevel", 0) + 2), PlayerPrefs.GetInt("unlockLevels", 1));
         PlayerPrefs.SetInt("unlockLevels", i);
         StartCoroutine(OnWinCorutine());

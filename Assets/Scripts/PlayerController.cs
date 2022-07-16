@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
 
     [Range(0f, 2f)] public float animTime = 1;
     public ParticleSystem winParticle;
+    public AudioSource audioSource;
+    public AudioClip slideAudioClip;
+    public AudioClip rollAudioClip;
 
     private void Start()
     {
@@ -26,7 +29,6 @@ public class PlayerController : MonoBehaviour
 
     public void MoveDown(InputAction.CallbackContext ctx)
     {
-
         if (GameManager.instance.isInMove) return;
         if (ctx.phase != InputActionPhase.Performed) return;
         MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(1, 0));
@@ -34,7 +36,6 @@ public class PlayerController : MonoBehaviour
 
     public void MoveUp(InputAction.CallbackContext ctx)
     {
-
         if (GameManager.instance.isInMove) return;
         if (ctx.phase != InputActionPhase.Performed) return;
         MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(-1, 0));
@@ -42,7 +43,6 @@ public class PlayerController : MonoBehaviour
 
     public void MoveLeft(InputAction.CallbackContext ctx)
     {
-
         if (GameManager.instance.isInMove) return;
         if (ctx.phase != InputActionPhase.Performed) return;
         MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(0, -1));
@@ -50,7 +50,6 @@ public class PlayerController : MonoBehaviour
 
     public void MoveRight(InputAction.CallbackContext ctx)
     {
-
         if (GameManager.instance.isInMove) return;
         if (ctx.phase != InputActionPhase.Performed) return;
         MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(0, 1));
@@ -63,6 +62,8 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator MoveWithoutRollCoroutine(Vector2 newPos)
     {
+        audioSource.clip = slideAudioClip;
+        audioSource.Play();
         var tile = GameManager.instance.tileManager.GetTile(new Vector3(newPos.x, 0, newPos.y));
         if (tile == null || !tile.canPlace()) yield break;
         var position = transform.position;
@@ -86,6 +87,8 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator MoveWithRollCoroutine(Vector2 newPos)
     {
+        // audioSource.clip = rollAudioClip;
+        // audioSource.Play();
         var tile = GameManager.instance.tileManager.GetTile(new Vector3(newPos.x, 0, newPos.y));
         if (tile == null || !tile.canPlace()) yield break;
         var position = transform.position;
