@@ -22,3 +22,6 @@ MonoBehaviour:
   - name: Level3
     image: {fileID: 0}
     sceneName: L3
+  - name: 10
+    image: {fileID: 0}
+    sceneName: L10
