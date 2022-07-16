@@ -165,7 +165,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556d73b1da495b949ac46eba7fb2b9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiles: []
+  details:
+    rotationAngle: 60
+    distance: 10
+    height: 8
 --- !u!114 &847079255
 MonoBehaviour:
   m_ObjectHideFlags: 0
