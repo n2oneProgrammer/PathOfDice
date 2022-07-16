@@ -17,6 +17,11 @@ public class SceneLoadUI : MonoBehaviour
         loader.LoadScene(name);
     }
 
+    public void LoadLastLevel()
+    {
+        loader.LoadLevel(PlayerPrefs.GetInt("unlockLevels", 1) - 1);
+    }
+
     public void LoadLevel(int id)
     {
         loader.LoadLevel(id);
