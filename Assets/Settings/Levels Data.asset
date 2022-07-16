@@ -52,3 +52,12 @@ MonoBehaviour:
   - name: L22
     image: {fileID: 0}
     sceneName: L22
+  - name: L30
+    image: {fileID: 0}
+    sceneName: L30
+  - name: L31
+    image: {fileID: 0}
+    sceneName: L31
+  - name: L32
+    image: {fileID: 0}
+    sceneName: L32
