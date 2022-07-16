@@ -79,11 +79,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInMove: 0
-  tileManager: {fileID: 0}
+  tileManager: {fileID: 3553517119231579949}
   player: {fileID: 0}
   onWin:
     m_PersistentCalls:
       m_Calls: []
+  endScreen: {fileID: 0}
+  showWinPanelTime: 1
 --- !u!114 &3553517119231579949
 MonoBehaviour:
   m_ObjectHideFlags: 0
