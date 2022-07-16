@@ -165,7 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556d73b1da495b949ac46eba7fb2b9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiles: []
 --- !u!114 &847079255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +180,9 @@ MonoBehaviour:
   isInMove: 0
   tileManager: {fileID: 0}
   player: {fileID: 197212906}
+  onWin:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &847079256
 Transform:
   m_ObjectHideFlags: 0
