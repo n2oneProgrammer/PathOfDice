@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioClip winAudioClip;
+    public AudioClip wrondAudioClip;
     [Header("UI")] public GameObject endScreen;
     public float showWinPanelTime;
     public TMPro.TextMeshProUGUI scoreText;
@@ -87,6 +88,12 @@ public class GameManager : MonoBehaviour
             save.highScore = moveCount;
             LevelSaver.pushSave(save);
         }
+    }
+
+    public void Wrong()
+    {
+        audioSource.clip = wrondAudioClip;
+        audioSource.Play();
     }
 
     IEnumerator OnWinCorutine()
