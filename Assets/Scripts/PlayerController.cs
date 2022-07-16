@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip slideAudioClip;
     public AudioClip rollAudioClip;
+    public AudioClip rotateAudioClip;
+    public AudioClip wrongAudioClip;
 
     private void Start()
     {
@@ -58,10 +60,17 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator MoveWithoutRollCoroutine(Vector2 newPos)
     {
+        var tile = GameManager.instance.tileManager.GetTile(new Vector3(newPos.x, 0, newPos.y));
+        if (tile == null || !tile.canPlace())
+        {
+            audioSource.clip = wrongAudioClip;
+            audioSource.Play();
+            yield break;
+        };
+
         audioSource.clip = slideAudioClip;
         audioSource.Play();
-        var tile = GameManager.instance.tileManager.GetTile(new Vector3(newPos.x, 0, newPos.y));
-        if (tile == null || !tile.canPlace()) yield break;
+
         var position = transform.position;
         float counter = 0;
         GameManager.instance.StartMove();
@@ -83,10 +92,16 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator MoveWithRollCoroutine(Vector2 newPos)
     {
-        // audioSource.clip = rollAudioClip;
-        // audioSource.Play();
         var tile = GameManager.instance.tileManager.GetTile(new Vector3(newPos.x, 0, newPos.y));
-        if (tile == null || !tile.canPlace()) yield break;
+        if (tile == null || !tile.canPlace()) {
+            audioSource.clip = wrongAudioClip;
+            audioSource.Play();
+            yield break;
+        };
+
+        audioSource.clip = rollAudioClip;
+        audioSource.Play();
+
         var position = transform.position;
         var rotation = transform.rotation;
         var distance = newPos - Utils.Vec3ToVec2(position);
@@ -119,7 +134,16 @@ public class PlayerController : MonoBehaviour
     {
         var tile = GameManager.instance.tileManager.GetTile(new Vector3((float)Math.Round(transform.position.x), 0,
             (float)Math.Round(transform.position.z)));
-        if (tile == null || !tile.canPlace()) yield break;
+        if (tile == null || !tile.canPlace())
+        {
+            audioSource.clip = wrongAudioClip;
+            audioSource.Play();
+            yield break;
+        };
+
+        audioSource.clip = rotateAudioClip;
+        audioSource.Play();
+
         var rotation = transform.rotation;
         var targetRotation = Quaternion.Euler(transform.localEulerAngles + angles);
 
