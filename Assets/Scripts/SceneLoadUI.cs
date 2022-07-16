@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SceneLoadUI : MonoBehaviour
 {
@@ -35,5 +36,11 @@ public class SceneLoadUI : MonoBehaviour
     public void LoadThisLevel()
     {
         loader.LoadLevel(PlayerPrefs.GetInt("currentLevel", 0));
+    }
+
+    public void RestartKeybord (InputAction.CallbackContext ctx)
+    {
+        if (ctx.phase != InputActionPhase.Performed) return;
+        LoadThisLevel();
     }
 }

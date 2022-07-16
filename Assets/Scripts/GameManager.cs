@@ -53,8 +53,8 @@ public class GameManager : MonoBehaviour
 
     void OnWin()
     {
-        int i = PlayerPrefs.GetInt("unlockLevels", 1);
-        PlayerPrefs.SetInt("unlockLevels", i + 1);
+        int i = Math.Max((PlayerPrefs.GetInt("currentLevel", 0) + 2) ,PlayerPrefs.GetInt("unlockLevels", 1));
+        PlayerPrefs.SetInt("unlockLevels", i);
         StartCoroutine(OnWinCorutine());
     }
 
