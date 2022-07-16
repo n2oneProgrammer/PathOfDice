@@ -64,7 +64,7 @@ public class Tile : MonoBehaviour
                 {
                     if (endType == EndType.All || GameManager.instance.player.getTopNumber() == (int)endType)
                     {
-                        GameManager.instance.Win();
+                        GameManager.instance.onWin.Invoke();
                     }
                     else
                     {

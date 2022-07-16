@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,10 +16,12 @@ public class GameManager : MonoBehaviour
     public bool isInMove;
     public TileManager tileManager;
     public PlayerController player;
+    public UnityEvent onWin;
 
     private void Awake()
     {
         _instance = this;
+        if(onWin == null) onWin = new UnityEvent();
     }
 
     private void Start()
@@ -41,8 +44,4 @@ public class GameManager : MonoBehaviour
         isInMove = false;
     }
 
-    public void Win()
-    {
-        print("Win");
-    }
 }
