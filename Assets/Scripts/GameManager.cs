@@ -40,4 +40,9 @@ public class GameManager : MonoBehaviour
     {
         isInMove = false;
     }
+
+    public void Win()
+    {
+        print("Win");
+    }
 }
