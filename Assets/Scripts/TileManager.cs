@@ -50,7 +50,6 @@ public class TileManager : MonoBehaviour
     public Tile GetTile(Vector3 pos)
     {
         var tile = tiles.Find(x => x.transform.position == pos);
-        print(tile);
         if (tile == null)
         {
             return null;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SceneLoadUI : MonoBehaviour
 {
+    public LevelsData data;
     SceneLoader loader;
 
     void Start()
@@ -16,9 +17,18 @@ public class SceneLoadUI : MonoBehaviour
         loader.LoadScene(name);
     }
 
-    public void LoadLevel(string name)
+    public void LoadLevel(int id)
     {
-        if (name == null) return;
-        loader.LoadLevel(name);
+        loader.LoadLevel(id);
+    }
+
+    public void LoadNextLevel()
+    {
+        loader.LoadLevel(PlayerPrefs.GetInt("currentLevel", 0) + 1);
+    }
+
+    public void LoadThisLevel()
+    {
+        loader.LoadLevel(PlayerPrefs.GetInt("currentLevel", 0));
     }
 }

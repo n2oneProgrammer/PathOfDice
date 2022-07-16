@@ -6,26 +6,29 @@ using TMPro;
 
 public class LevelManagerUI : MonoBehaviour
 {
-    public LevelsData data;
     public GameObject button;
+    public LevelsData data;
 
     void Start()
     {
-        foreach (Level level in data.levels)
+        for (int i = 0; i < data.levels.Length; i++)
         {
-            PleaceButton(level);
+            PleaceButton(i);
         }
     }
 
-    void PleaceButton(Level level)
+    void PleaceButton(int id)
     {
         GameObject obj = Instantiate(button, Vector3.zero, Quaternion.identity, transform);
-        obj.GetComponent<Button>().onClick.AddListener(()=>LoadLevel(level.sceneName));
-        obj.GetComponentInChildren<TextMeshProUGUI>().text = level.name;
+        Button b = obj.GetComponent<Button>();
+        b.onClick.AddListener(()=>LoadLevel(id));
+        b.interactable = PlayerPrefs.GetInt("unlockLevels", 1) > id;
+
+        obj.GetComponentInChildren<TextMeshProUGUI>().text = data.levels[id].name;
     }
 
-    void LoadLevel(string name)
+    void LoadLevel(int id)
     {
-        FindObjectOfType<SceneLoader>().LoadLevel(name);
+        FindObjectOfType<SceneLoader>().LoadLevel(id);
     }
 }
