@@ -22,7 +22,7 @@ public class LevelManagerUI : MonoBehaviour
         GameObject obj = Instantiate(button, Vector3.zero, Quaternion.identity, transform);
         Button b = obj.GetComponent<Button>();
         b.onClick.AddListener(()=>LoadLevel(id));
-        b.interactable = PlayerPrefs.GetInt("unlockLevels", 1) > id;
+        //b.interactable = PlayerPrefs.GetInt("unlockLevels", 1) > id; // THE CHEAT TODO: remove this
 
         obj.GetComponentInChildren<TextMeshProUGUI>().text = data.levels[id].name;
     }
