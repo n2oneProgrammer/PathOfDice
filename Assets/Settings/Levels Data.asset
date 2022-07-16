@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - name: Level1
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 29cda8f96ff378044b766b466bb95a5b, type: 3}
     sceneName: L1
   - name: Level2
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 5281dcf8c8f685d4990e1436473550a3, type: 3}
     sceneName: L2
   - name: Level3
     image: {fileID: 0}
@@ -25,6 +25,39 @@ MonoBehaviour:
   - name: Level4
     image: {fileID: 0}
     sceneName: L4
+  - name: 7
+    image: {fileID: 0}
+    sceneName: L7
+  - name: 8
+    image: {fileID: 0}
+    sceneName: L8
+  - name: 9
+    image: {fileID: 0}
+    sceneName: L9
   - name: 10
     image: {fileID: 0}
     sceneName: L10
+  - name: T1
+    image: {fileID: 0}
+    sceneName: T1
+  - name: T2
+    image: {fileID: 0}
+    sceneName: T2
+  - name: L20
+    image: {fileID: 0}
+    sceneName: L20
+  - name: L21
+    image: {fileID: 0}
+    sceneName: L21
+  - name: L22
+    image: {fileID: 0}
+    sceneName: L22
+  - name: L30
+    image: {fileID: 0}
+    sceneName: L30
+  - name: L31
+    image: {fileID: 0}
+    sceneName: L31
+  - name: L32
+    image: {fileID: 0}
+    sceneName: L32

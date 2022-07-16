@@ -15,8 +15,8 @@ public class Tile : MonoBehaviour
 
     public enum RotateDirection
     {
-        Left = 90,
-        Right = -90,
+        Left = -90,
+        Right = 90,
     }
 
     public enum EndType

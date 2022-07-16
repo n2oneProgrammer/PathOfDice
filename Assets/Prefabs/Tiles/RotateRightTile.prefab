@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
-  direction: -90
+  direction: 90
   endType: 0
 --- !u!65 &109577294815340170
 BoxCollider:
