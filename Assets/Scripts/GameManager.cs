@@ -6,26 +6,24 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
-    static private GameManager _instance;
+    private static GameManager _instance;
 
-    static public GameManager instance
-    {
-        get { return _instance; }
-    }
+    public static GameManager instance => _instance;
 
     public bool isInMove;
     public TileManager tileManager;
     public PlayerController player;
     public UnityEvent onWin;
-
-    [Header("UI")]
-    public GameObject endScreen;
+    public LevelsData LevelsData;
+    [Header("UI")] public GameObject endScreen;
     public float showWinPanelTime;
+
+    private int moveCount = 0;
 
     private void Awake()
     {
         _instance = this;
-        if(onWin == null) onWin = new UnityEvent();
+        if (onWin == null) onWin = new UnityEvent();
         onWin.AddListener(OnWin);
     }
 
@@ -33,6 +31,11 @@ public class GameManager : MonoBehaviour
     {
         endScreen.SetActive(false);
         tileManager = FindObjectOfType<TileManager>();
+        string levelName = LevelsData.GetLevelSceneName(PlayerPrefs.GetInt("currentLevel", 0));
+        var save = LevelSaver.getSave(levelName);
+        print(save.name);
+        print(save.highScore);
+        moveCount = 0;
     }
 
     public void MovedTo(GameObject tile)
@@ -48,14 +51,19 @@ public class GameManager : MonoBehaviour
     public void EndMove()
     {
         isInMove = false;
+        moveCount++;
     }
 
 
     void OnWin()
     {
-        int i = Math.Max((PlayerPrefs.GetInt("currentLevel", 0) + 2) ,PlayerPrefs.GetInt("unlockLevels", 1));
+        int i = Math.Max((PlayerPrefs.GetInt("currentLevel", 0) + 2), PlayerPrefs.GetInt("unlockLevels", 1));
         PlayerPrefs.SetInt("unlockLevels", i);
         StartCoroutine(OnWinCorutine());
+        string levelName = LevelsData.GetLevelSceneName(PlayerPrefs.GetInt("currentLevel", 0));
+        var save = LevelSaver.getSave(levelName);
+        save.highScore = moveCount;
+        LevelSaver.pushSave(save);
     }
 
     IEnumerator OnWinCorutine()
