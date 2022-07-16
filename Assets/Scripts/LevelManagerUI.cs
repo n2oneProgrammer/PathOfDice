@@ -22,9 +22,16 @@ public class LevelManagerUI : MonoBehaviour
         GameObject obj = Instantiate(button, Vector3.zero, Quaternion.identity, transform);
         Button b = obj.GetComponent<Button>();
         b.onClick.AddListener(()=>LoadLevel(id));
-        b.interactable = PlayerPrefs.GetInt("unlockLevels", 1) > id;
+
+        if (PlayerPrefs.GetInt("unlockLevels", 1) <= id || PlayerPrefs.GetInt("unlockAll",0) == 1)
+        {
+            obj.transform.Find("Panel").gameObject.SetActive(true);
+            b.interactable = false;
+        }
 
         obj.GetComponentInChildren<TextMeshProUGUI>().text = data.levels[id].name;
+        obj.GetComponentsInChildren<Image>()[1].sprite = data.levels[id].image;
+        
     }
 
     void LoadLevel(int id)
