@@ -9,6 +9,8 @@ public class SceneLoader : MonoBehaviour
     public string gameScene;
     public string startScene;
 
+    public LevelsData data;
+
     public void LoadScene(string name)
     {
         if (name == null || name == "") return;
@@ -16,9 +18,11 @@ public class SceneLoader : MonoBehaviour
         StartCoroutine(_LoadScene(name));
     }
 
-    public void LoadLevel(string name)
+    public void LoadLevel(int id)
     {
+        string name = data.GetLevelSceneName(id);
         if (name == null || name == "") return;
+        PlayerPrefs.SetInt("currentLevel",id);
         LoadingScreen.SetActive(true);
         StartCoroutine(_LoadLevel(name));
 
