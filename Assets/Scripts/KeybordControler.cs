@@ -6,6 +6,12 @@ public class KeybordControler : MonoBehaviour
 {
     public GameObject pausePanel;
     public SceneLoadUI sceneLoadUI;
+    bool isWin = false;
+
+    private void Start()
+    {
+        GameManager.instance.onWin.AddListener(() => { isWin = true; });
+    }
 
     private void Update()
     {
@@ -17,6 +23,12 @@ public class KeybordControler : MonoBehaviour
         {
             sceneLoadUI.LoadThisLevel();
         }
+        if (Input.GetButtonUp("Submit") && isWin)
+        {
+            sceneLoadUI.LoadNextLevel();
+        }
     }
+
+
 
 }
