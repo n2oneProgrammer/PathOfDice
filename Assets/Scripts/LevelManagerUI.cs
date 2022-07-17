@@ -21,19 +21,19 @@ public class LevelManagerUI : MonoBehaviour
     {
         GameObject obj = Instantiate(button, Vector3.zero, Quaternion.identity, transform);
         Button b = obj.GetComponent<Button>();
-        b.onClick.AddListener(()=>LoadLevel(id));
+        b.onClick.AddListener(() => LoadLevel(id));
 
-        if (PlayerPrefs.GetInt("unlockLevels", 1) <= id && PlayerPrefs.GetInt("unlockAll",0) == 0)
+        if (PlayerPrefs.GetInt("unlockLevels", 1) <= id && PlayerPrefs.GetInt("unlockAll", 0) == 0)
         {
             obj.transform.Find("Panel").gameObject.SetActive(true);
             b.interactable = false;
         }
 
-        obj.GetComponentInChildren<TextMeshProUGUI>().text = data.levels[id].name;
+        obj.GetComponentInChildren<TextMeshProUGUI>().text = "Level " + (id + 1);
         obj.GetComponentsInChildren<Image>()[1].sprite = data.levels[id].image;
         var save = LevelSaver.getSave(data.levels[id].sceneName);
-        obj.transform.Find("Best").gameObject.GetComponent<TextMeshProUGUI>().text = "" + (save.highScore == System.Int32.MaxValue ? "-" : save.highScore);
-
+        obj.transform.Find("Best").gameObject.GetComponent<TextMeshProUGUI>().text =
+            "" + (save.highScore == System.Int32.MaxValue ? "-" : save.highScore);
     }
 
     void LoadLevel(int id)
