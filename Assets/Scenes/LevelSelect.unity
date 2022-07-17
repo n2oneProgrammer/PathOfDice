@@ -494,8 +494,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1974242781}
   m_HandleRect: {fileID: 1974242780}
   m_Direction: 2
-  m_Value: 0.9999998
-  m_Size: 0.6216222
+  m_Value: 1
+  m_Size: 0.49823138
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -571,6 +571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 0}
+  levelSelectScene: 
 --- !u!114 &1213955357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -690,7 +691,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 789.5885}
+  m_SizeDelta: {x: 0, y: 1065.3298}
   m_Pivot: {x: 0, y: 1}
 --- !u!1001 &1462020557
 PrefabInstance:

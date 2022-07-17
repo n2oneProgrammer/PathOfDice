@@ -187,7 +187,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (var item in faces)
         {
-            if (transform.rotation * item.Key == Vector3.down)
+            if (Utils.NormalizeRotation(transform.rotation) * item.Key == Vector3.down)
             {
                 return item.Value;
             }
