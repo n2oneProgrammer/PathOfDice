@@ -67,13 +67,21 @@ public class Tile : MonoBehaviour
             case TileType.Flip:
             {
                 Vector3 pos = transform.position + transform.rotation * Vector3.forward;
-                GameManager.instance.player.MoveWithRoll(Utils.Vec3ToVec2(pos));
+                if (!GameManager.instance.player.MoveWithRoll(Utils.Vec3ToVec2(pos)))
+                {
+                    GameManager.instance.EndMove();
+                }
+
                 break;
             }
             case TileType.Move:
             {
                 Vector3 pos = transform.position + transform.rotation * Vector3.forward;
-                GameManager.instance.player.MoveWithoutRoll(Utils.Vec3ToVec2(pos));
+                if (!GameManager.instance.player.MoveWithoutRoll(Utils.Vec3ToVec2(pos)))
+                {
+                    GameManager.instance.EndMove();
+                }
+
                 break;
             }
             case TileType.Rotate:
