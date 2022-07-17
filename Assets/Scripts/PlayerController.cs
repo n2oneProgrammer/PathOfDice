@@ -24,7 +24,10 @@ public class PlayerController : MonoBehaviour
     public AudioClip wrongAudioClip;
 
     float timer = 0;
+    float noInputTimer = 0;
     bool wasRelised = true;
+    Vector2 lastMove = Vector2.zero;
+    int sameMoveCount = 0;
 
     private void Start()
     {
@@ -33,16 +36,19 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        Vector2 input = new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
+
+        if (input.x == 0 && input.y == 0)
+        {
+            wasRelised = true;
+        }
+       
+        bool wasValidMove = false;
+        Vector2 currnetMove = Vector2.zero;
+
         if (!GameManager.instance.isInMove)
         {
-            Vector2 input = new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
-
-            if (input.x == 0 && input.y == 0)
-            {
-                wasRelised = true;
-            }
-
-            if (wasRelised && timer < 0.15)
+            if (!wasRelised && timer < 0.15)
             {
                 timer += Time.deltaTime;
                 return;
@@ -50,28 +56,61 @@ public class PlayerController : MonoBehaviour
 
             if (input.x > 0)
             {
-                MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(-1, 0), true);
+                currnetMove = new Vector2(-1, 0);
+                wasValidMove = MoveWithRoll(Utils.Vec3ToVec2(transform.position) + currnetMove, true);
                 timer = 0;
                 wasRelised = false;
             }
             else if (input.x < 0)
             {
-                MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(1, 0), true);
+                currnetMove = new Vector2(1, 0);
+                wasValidMove = MoveWithRoll(Utils.Vec3ToVec2(transform.position) + currnetMove, true);
                 timer = 0;
                 wasRelised = false;
             }
             else if (input.y > 0)
             {
-                MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(0, 1), true);
+                currnetMove = new Vector2(0, 1);
+                wasValidMove = MoveWithRoll(Utils.Vec3ToVec2(transform.position) + currnetMove, true);
                 timer = 0;
                 wasRelised = false;
+                
             }
             else if (input.y < 0)
             {
-                MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(0, -1), true);
+                currnetMove = new Vector2(0, -1);
+                wasValidMove = MoveWithRoll(Utils.Vec3ToVec2(transform.position) + currnetMove, true);
                 timer = 0;
                 wasRelised = false;
             }
+        }
+
+        if (currnetMove != Vector2.zero)
+        {
+            if (currnetMove == lastMove)
+            {
+                sameMoveCount++;
+            }
+            else
+            {
+                lastMove = currnetMove;
+                sameMoveCount = 1;
+            }
+        }
+
+        if (noInputTimer > 15 || sameMoveCount > 5)
+        {
+            GameManager.instance.SetRestartText(true);
+        }
+
+
+        if (!wasValidMove)
+        {
+            noInputTimer += Time.deltaTime;
+        }
+        else
+        {
+            noInputTimer = 0;
         }
     }
 
