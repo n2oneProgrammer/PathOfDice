@@ -92,6 +92,7 @@ MonoBehaviour:
   endScreen: {fileID: 0}
   showWinPanelTime: 1
   scoreText: {fileID: 0}
+  restartText: {fileID: 0}
 --- !u!114 &3553517119231579949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,7 +177,8 @@ AudioSource:
   m_GameObject: {fileID: 8197552537668481486}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 848497633109656811, guid: fc0c258ba6b46294dbb35c60c4e90927,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
