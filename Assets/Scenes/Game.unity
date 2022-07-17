@@ -2260,6 +2260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: fa417421fe7cfb84ca6d5f86c9dbfaa1, type: 2}
   levelSelectScene: LevelSelect
+  endScene: End
 --- !u!114 &1933133522
 MonoBehaviour:
   m_ObjectHideFlags: 0
