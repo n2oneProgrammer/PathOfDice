@@ -6,7 +6,6 @@ using UnityEngine;
 [Serializable]
 public class Level
 {
-    public string name;
     public Sprite image;
     public string sceneName;
 }
