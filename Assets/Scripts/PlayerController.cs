@@ -82,13 +82,17 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator MoveWithoutRollCoroutine(Vector2 newPos)
     {
+        var oldTile = GameManager.instance.tileManager.GetTile(new Vector3((float)Math.Round(transform.position.x), 0,
+            (float)Math.Round(transform.position.z)));
         var tile = GameManager.instance.tileManager.GetTile(new Vector3(newPos.x, 0, newPos.y));
         if (tile == null || !tile.canPlace())
         {
             audioSource.clip = wrongAudioClip;
             audioSource.Play();
             yield break;
-        };
+        }
+
+        ;
 
         audioSource.clip = slideAudioClip;
         audioSource.Play();
@@ -104,6 +108,7 @@ public class PlayerController : MonoBehaviour
         }
 
         transform.position = new Vector3(newPos.x, 1, newPos.y);
+        tile.OnRelease();
         GameManager.instance.MovedTo(tile.gameObject);
     }
 
@@ -114,12 +119,17 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator MoveWithRollCoroutine(Vector2 newPos)
     {
+        var oldTile = GameManager.instance.tileManager.GetTile(new Vector3((float)Math.Round(transform.position.x), 0,
+            (float)Math.Round(transform.position.z)));
         var tile = GameManager.instance.tileManager.GetTile(new Vector3(newPos.x, 0, newPos.y));
-        if (tile == null || !tile.canPlace()) {
+        if (tile == null || !tile.canPlace())
+        {
             audioSource.clip = wrongAudioClip;
             audioSource.Play();
             yield break;
-        };
+        }
+
+        
 
         audioSource.clip = rollAudioClip;
         audioSource.Play();
@@ -144,6 +154,7 @@ public class PlayerController : MonoBehaviour
         transform.position = position;
         transform.rotation = rotation;
         transform.RotateAround(rotationPoint, rotationAxis, 90);
+        oldTile.OnRelease();
         GameManager.instance.MovedTo(tile.gameObject);
     }
 
@@ -161,7 +172,9 @@ public class PlayerController : MonoBehaviour
             audioSource.clip = wrongAudioClip;
             audioSource.Play();
             yield break;
-        };
+        }
+
+        ;
 
         audioSource.clip = rotateAudioClip;
         audioSource.Play();
@@ -180,12 +193,6 @@ public class PlayerController : MonoBehaviour
 
         transform.rotation = targetRotation;
         GameManager.instance.EndMove();
-    }
-
-    private void OnDrawGizmos()
-    {
-        var vec = transform.rotation * Vector3.up;
-        Debug.DrawRay(transform.position, vec, Color.red);
     }
 
     public int getNumber()

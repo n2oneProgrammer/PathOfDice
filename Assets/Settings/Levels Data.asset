@@ -70,3 +70,6 @@ MonoBehaviour:
   - name: Level 19
     image: {fileID: 0}
     sceneName: T5
+  - name: Level 20
+    image: {fileID: 0}
+    sceneName: L40

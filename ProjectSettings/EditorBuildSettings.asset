@@ -95,6 +95,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Test Chambers/T5.unity
     guid: c70a02da729cea541b2201df47ce30a2
+  - enabled: 1
+    path: Assets/Scenes/Levels/L40.unity
+    guid: 9d591d64309f29148b5f714235dce5de
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: d7851f9403a04fd408e2eb27032d6bd7,
       type: 2}
