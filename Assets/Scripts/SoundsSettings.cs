@@ -18,6 +18,7 @@ public class SoundsSettings : MonoBehaviour
 
     public void SetValue(float v)
     {
+        if(obj != null)
         obj.SetActive(v<0);
         mixer.SetFloat(name, v);
     }
