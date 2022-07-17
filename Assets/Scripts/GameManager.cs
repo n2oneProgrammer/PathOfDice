@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     [Header("UI")] public GameObject endScreen;
     public float showWinPanelTime;
     public TMPro.TextMeshProUGUI scoreText;
+    public GameObject restartText;
 
     private int moveCount = 0;
     int lastScore = 0;
@@ -66,6 +67,12 @@ public class GameManager : MonoBehaviour
     void DisplayScore()
     {
         scoreText.text = moveCount + "/" + (lastScore == Int32.MaxValue ? "-" : lastScore);
+        
+    }
+
+    public void SetRestartText(bool b)
+    {
+        restartText.SetActive(b);
     }
 
     void OnWin()
