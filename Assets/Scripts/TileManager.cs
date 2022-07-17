@@ -23,4 +23,9 @@ public class TileManager : MonoBehaviour
     {
         tiles.Add(tile);
     }
+
+    public void removeTile(Tile tile)
+    {
+        tiles.Remove(tile);
+    }
 }

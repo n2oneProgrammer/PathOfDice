@@ -10,7 +10,8 @@ public class Tile : MonoBehaviour
         Flip = 1,
         Move = 2,
         Rotate = 3,
-        End = 4,
+        Breaking = 4,
+        End = 5,
     }
 
     public enum RotateDirection
@@ -33,10 +34,30 @@ public class Tile : MonoBehaviour
     public TileType type;
     public RotateDirection direction = RotateDirection.Left;
     public EndType endType;
+    public ParticleSystem destroyingParticle;
 
     private void Start()
     {
         FindObjectOfType<TileManager>().AddTile(this);
+    }
+
+    public void OnRelease()
+    {
+        switch (type)
+        {
+            case TileType.Breaking:
+                StartCoroutine(DestroyAnimation());
+                break;
+        }
+    }
+
+    public IEnumerator DestroyAnimation()
+    {
+        FindObjectOfType<TileManager>().removeTile(this);
+        destroyingParticle.Play();
+        gameObject.GetComponentInChildren<MeshRenderer>().gameObject.SetActive(false);
+        yield return new WaitForSeconds(10);
+        Destroy(gameObject);
     }
 
     public void OnMove()
@@ -44,41 +65,40 @@ public class Tile : MonoBehaviour
         switch (type)
         {
             case TileType.Flip:
-                {
-                    Vector3 pos = transform.position + transform.rotation * Vector3.forward;
-                    GameManager.instance.player.MoveWithRoll(Utils.Vec3ToVec2(pos));
-                    break;
-                }
+            {
+                Vector3 pos = transform.position + transform.rotation * Vector3.forward;
+                GameManager.instance.player.MoveWithRoll(Utils.Vec3ToVec2(pos));
+                break;
+            }
             case TileType.Move:
-                {
-                    Vector3 pos = transform.position + transform.rotation * Vector3.forward;
-                    GameManager.instance.player.MoveWithoutRoll(Utils.Vec3ToVec2(pos));
-                    break;
-                }
+            {
+                Vector3 pos = transform.position + transform.rotation * Vector3.forward;
+                GameManager.instance.player.MoveWithoutRoll(Utils.Vec3ToVec2(pos));
+                break;
+            }
             case TileType.Rotate:
-                {
-                    GameManager.instance.player.Rotate(new Vector3(0, (float)direction, 0));
-                    break;
-                }
+            {
+                GameManager.instance.player.Rotate(new Vector3(0, (float)direction, 0));
+                break;
+            }
             case TileType.End:
+            {
+                if (endType == EndType.All || GameManager.instance.player.getNumber() == (int)endType)
                 {
-                    if (endType == EndType.All || GameManager.instance.player.getNumber() == (int)endType)
-                    {
-                        GameManager.instance.onWin.Invoke();
-                    }
-                    else
-                    {
-                        GameManager.instance.Wrong();
-                        GameManager.instance.EndMove();
-                    }
-
-                    break;
+                    GameManager.instance.onWin.Invoke();
                 }
+                else
+                {
+                    GameManager.instance.Wrong();
+                    GameManager.instance.EndMove();
+                }
+
+                break;
+            }
             default:
                 GameManager.instance.EndMove();
                 break;
         }
-        
     }
 
     public bool canPlace()
