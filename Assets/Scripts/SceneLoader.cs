@@ -42,8 +42,9 @@ public class SceneLoader : MonoBehaviour
         EndLoading();
     }
 
-    IEnumerator _LoadScene(string name, bool withBackground = false)
+    IEnumerator _LoadScene(string name, bool withBackground = true)
     {
+        withBackground = true;
         AsyncOperation loading = SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
         AsyncOperation background = null;
         if (withBackground)

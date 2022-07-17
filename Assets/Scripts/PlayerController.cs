@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip rotateAudioClip;
     public AudioClip wrongAudioClip;
 
+    float timer = 0;
+    bool wasRelised = true;
+
     private void Start()
     {
         GameManager.instance.onWin.AddListener(OnWin);
@@ -34,21 +37,40 @@ public class PlayerController : MonoBehaviour
         {
             Vector2 input = new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
 
+            if (input.x == 0 && input.y == 0)
+            {
+                wasRelised = true;
+            }
+
+            if (wasRelised && timer < 0.15)
+            {
+                timer += Time.deltaTime;
+                return;
+            }
+
             if (input.x > 0)
             {
                 MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(-1, 0));
+                timer = 0;
+                wasRelised = false;
             }
             else if (input.x < 0)
             {
                 MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(1, 0));
+                timer = 0;
+                wasRelised = false;
             }
             else if (input.y > 0)
             {
                 MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(0, 1));
+                timer = 0;
+                wasRelised = false;
             }
             else if (input.y < 0)
             {
                 MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(0, -1));
+                timer = 0;
+                wasRelised = false;
             }
         }
     }
