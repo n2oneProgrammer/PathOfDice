@@ -6,6 +6,7 @@ public class SceneLoadUI : MonoBehaviour
 {
     public LevelsData data;
     SceneLoader loader;
+    public string levelSelectScene;
 
     void Start()
     {
@@ -19,6 +20,12 @@ public class SceneLoadUI : MonoBehaviour
 
     public void LoadLastLevel()
     {
+        if (PlayerPrefs.GetInt("unlockLevels", 1) >= data.levels.Length)
+        {
+            loader.LoadScene(levelSelectScene);
+            return;
+        }
+
         loader.LoadLevel(PlayerPrefs.GetInt("unlockLevels", 1) - 1);
     }
 
@@ -29,6 +36,12 @@ public class SceneLoadUI : MonoBehaviour
 
     public void LoadNextLevel()
     {
+        if (PlayerPrefs.GetInt("currentLevel", 1) + 1 >= data.levels.Length)
+        {
+            loader.LoadScene(levelSelectScene);
+            return;
+        }
+
         loader.LoadLevel(PlayerPrefs.GetInt("currentLevel", 0) + 1);
     }
 
@@ -36,6 +49,4 @@ public class SceneLoadUI : MonoBehaviour
     {
         loader.LoadLevel(PlayerPrefs.GetInt("currentLevel", 0));
     }
-
-    
 }
