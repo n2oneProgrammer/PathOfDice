@@ -48,11 +48,14 @@ public class GameManager : MonoBehaviour
         tile.GetComponent<Tile>().OnMove();
     }
 
-    public void StartMove()
+    public void StartMove(bool playerMove = false)
     {
         isInMove = true;
-        moveCount++;
-        DisplayScore();
+        if (playerMove)
+        {
+            moveCount++;
+            DisplayScore();
+        }
     }
 
     public void EndMove()

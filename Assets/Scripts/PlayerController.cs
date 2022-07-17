@@ -50,37 +50,37 @@ public class PlayerController : MonoBehaviour
 
             if (input.x > 0)
             {
-                MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(-1, 0));
+                MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(-1, 0), true);
                 timer = 0;
                 wasRelised = false;
             }
             else if (input.x < 0)
             {
-                MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(1, 0));
+                MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(1, 0), true);
                 timer = 0;
                 wasRelised = false;
             }
             else if (input.y > 0)
             {
-                MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(0, 1));
+                MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(0, 1), true);
                 timer = 0;
                 wasRelised = false;
             }
             else if (input.y < 0)
             {
-                MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(0, -1));
+                MoveWithRoll(Utils.Vec3ToVec2(transform.position) + new Vector2(0, -1), true);
                 timer = 0;
                 wasRelised = false;
             }
         }
     }
 
-    public void MoveWithoutRoll(Vector2 newPos)
+    public void MoveWithoutRoll(Vector2 newPos, bool playerMove = false)
     {
-        StartCoroutine(MoveWithoutRollCoroutine(newPos));
+        StartCoroutine(MoveWithoutRollCoroutine(newPos, playerMove));
     }
 
-    public IEnumerator MoveWithoutRollCoroutine(Vector2 newPos)
+    public IEnumerator MoveWithoutRollCoroutine(Vector2 newPos, bool playerMove = false)
     {
         var oldTile = GameManager.instance.tileManager.GetTile(new Vector3((float)Math.Round(transform.position.x), 0,
             (float)Math.Round(transform.position.z)));
@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
 
         var position = transform.position;
         float counter = 0;
-        GameManager.instance.StartMove();
+        GameManager.instance.StartMove(playerMove);
         while (counter < animTime)
         {
             transform.position = Vector3.Lerp(position, new Vector3(newPos.x, 1, newPos.y), counter / animTime);
@@ -112,12 +112,12 @@ public class PlayerController : MonoBehaviour
         GameManager.instance.MovedTo(tile.gameObject);
     }
 
-    public void MoveWithRoll(Vector2 newPos)
+    public void MoveWithRoll(Vector2 newPos, bool playerMove = false)
     {
-        StartCoroutine(MoveWithRollCoroutine(newPos));
+        StartCoroutine(MoveWithRollCoroutine(newPos, playerMove));
     }
 
-    public IEnumerator MoveWithRollCoroutine(Vector2 newPos)
+    public IEnumerator MoveWithRollCoroutine(Vector2 newPos, bool playerMove = false)
     {
         var oldTile = GameManager.instance.tileManager.GetTile(new Vector3((float)Math.Round(transform.position.x), 0,
             (float)Math.Round(transform.position.z)));
@@ -129,7 +129,6 @@ public class PlayerController : MonoBehaviour
             yield break;
         }
 
-        
 
         audioSource.clip = rollAudioClip;
         audioSource.Play();
@@ -141,7 +140,7 @@ public class PlayerController : MonoBehaviour
         Vector3 rotationPoint = position + diffVec;
         Vector3 rotationAxis = Vector3.Cross(Vector3.up, diffVec);
         float counter = 0;
-        GameManager.instance.StartMove();
+        GameManager.instance.StartMove(playerMove);
         while (counter < animTime)
         {
             transform.position = position;
@@ -183,7 +182,7 @@ public class PlayerController : MonoBehaviour
         var targetRotation = Quaternion.Euler(transform.localEulerAngles + angles);
 
         float counter = 0;
-        GameManager.instance.StartMove();
+        GameManager.instance.StartMove(false);
         while (counter < animTime)
         {
             transform.rotation = Quaternion.Lerp(rotation, targetRotation, counter / animTime);
