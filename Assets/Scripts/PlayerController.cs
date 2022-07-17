@@ -75,25 +75,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void MoveWithoutRoll(Vector2 newPos, bool playerMove = false)
+    public bool MoveWithoutRoll(Vector2 newPos, bool playerMove = false)
     {
-        StartCoroutine(MoveWithoutRollCoroutine(newPos, playerMove));
-    }
-
-    public IEnumerator MoveWithoutRollCoroutine(Vector2 newPos, bool playerMove = false)
-    {
-        var oldTile = GameManager.instance.tileManager.GetTile(new Vector3((float)Math.Round(transform.position.x), 0,
-            (float)Math.Round(transform.position.z)));
         var tile = GameManager.instance.tileManager.GetTile(new Vector3(newPos.x, 0, newPos.y));
         if (tile == null || !tile.canPlace())
         {
             audioSource.clip = wrongAudioClip;
             audioSource.Play();
-            yield break;
+            return false;
         }
 
-        ;
+        StartCoroutine(MoveWithoutRollCoroutine(newPos, tile, playerMove));
+        return true;
+    }
 
+    public IEnumerator MoveWithoutRollCoroutine(Vector2 newPos, Tile tile, bool playerMove = false)
+    {
+        var oldTile = GameManager.instance.tileManager.GetTile(new Vector3((float)Math.Round(transform.position.x), 0,
+            (float)Math.Round(transform.position.z)));
         audioSource.clip = slideAudioClip;
         audioSource.Play();
 
@@ -108,28 +107,28 @@ public class PlayerController : MonoBehaviour
         }
 
         transform.position = new Vector3(newPos.x, 1, newPos.y);
-        tile.OnRelease();
+        oldTile.OnRelease();
         GameManager.instance.MovedTo(tile.gameObject);
     }
 
-    public void MoveWithRoll(Vector2 newPos, bool playerMove = false)
+    public bool MoveWithRoll(Vector2 newPos, bool playerMove = false)
     {
-        StartCoroutine(MoveWithRollCoroutine(newPos, playerMove));
-    }
-
-    public IEnumerator MoveWithRollCoroutine(Vector2 newPos, bool playerMove = false)
-    {
-        var oldTile = GameManager.instance.tileManager.GetTile(new Vector3((float)Math.Round(transform.position.x), 0,
-            (float)Math.Round(transform.position.z)));
         var tile = GameManager.instance.tileManager.GetTile(new Vector3(newPos.x, 0, newPos.y));
         if (tile == null || !tile.canPlace())
         {
             audioSource.clip = wrongAudioClip;
             audioSource.Play();
-            yield break;
+            return false;
         }
 
+        StartCoroutine(MoveWithRollCoroutine(newPos, tile, playerMove));
+        return true;
+    }
 
+    public IEnumerator MoveWithRollCoroutine(Vector2 newPos, Tile tile, bool playerMove = false)
+    {
+        var oldTile = GameManager.instance.tileManager.GetTile(new Vector3((float)Math.Round(transform.position.x), 0,
+            (float)Math.Round(transform.position.z)));
         audioSource.clip = rollAudioClip;
         audioSource.Play();
 
@@ -157,24 +156,14 @@ public class PlayerController : MonoBehaviour
         GameManager.instance.MovedTo(tile.gameObject);
     }
 
-    public void Rotate(Vector3 angles)
+    public bool Rotate(Vector3 angles)
     {
         StartCoroutine(RotateCoroutine(angles));
+        return true;
     }
 
     public IEnumerator RotateCoroutine(Vector3 angles)
     {
-        var tile = GameManager.instance.tileManager.GetTile(new Vector3((float)Math.Round(transform.position.x), 0,
-            (float)Math.Round(transform.position.z)));
-        if (tile == null || !tile.canPlace())
-        {
-            audioSource.clip = wrongAudioClip;
-            audioSource.Play();
-            yield break;
-        }
-
-        ;
-
         audioSource.clip = rotateAudioClip;
         audioSource.Play();
 
