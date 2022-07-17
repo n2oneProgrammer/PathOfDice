@@ -7,6 +7,7 @@ public class SceneLoadUI : MonoBehaviour
     public LevelsData data;
     SceneLoader loader;
     public string levelSelectScene;
+    public string endScene;
 
     void Start()
     {
@@ -38,7 +39,7 @@ public class SceneLoadUI : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("currentLevel", 1) + 1 >= data.levels.Length)
         {
-            loader.LoadScene(levelSelectScene);
+            loader.LoadScene(endScene);
             return;
         }
 
